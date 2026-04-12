@@ -8,9 +8,9 @@ def add_patient():
         DNI = verificationNumber("Enter the patient's DNI: ")
         name = verificationString("Enter the patient's name: ")
         phone = verificationNumber("Enter the patient's phone number: ")
-        type_of_client = verificationString("Particular or EPS: ")
-        type_of_care = verificationString("Enter the type of care needed: ")
-        amount = verificationNumber("Enter the amount to be paid: ")
+        type_of_client = verificationString("Particular, EPS or Prepaid: ")
+        type_of_care = verificationString("Enter the type of care needed (Cleaning, Fillings, Extraction, Diagnosis): ")
+        amount = verificationNumber("How many things were done in the consultation? (1 for Cleaning and Diagnosis) (For fillings and extractions, please indicate the number of procedures performed): ")
         priority_of_attention = verificationString("Enter the priority of attention (Normal or Urgent): ")
         appointment_date = verificationNumber("Enter the appointment date (DD-MM-YYYY): ", allow_dash=True)
 

@@ -6,11 +6,8 @@ def verificationString(prompt):
         if not x:
             print("Input cannot be empty. Please try again.")
             continue
-        if any(c.isdigit() for c in x):
-            print("Input cannot contain numbers. Please try again.")
-            continue
-        if re.search(r'[^a-zA-Z" "]', x):
-            print("Input cannot contain especial characters.")
+        if not re.fullmatch(r'[a-zA-Z ]+', x):
+            print("Input cannot contain numbers or special characters.")
             continue
         return x
     
@@ -20,13 +17,12 @@ def verificationNumber(prompt, allow_dash=False):
         if not x:
             print("Input cannot be empty. Please try again.")
             continue
-        if any(c.isalpha() for c in x):
-            print("Input cannot contain letters. Please try again.")
-            continue
-
-        patent = r'[^0-9-]' if allow_dash else r'[^0-9]'
-
-        if re.search(patent, x):
-            print("Input cannot contain especial characters.")
-            continue
+        if allow_dash == True:
+            if not re.fullmatch(r'[0-9-]+', x):
+                print("Only numbers and dashes allowed.")
+                continue
+        else:
+            if not re.fullmatch(r'[0-9]+', x):
+                print("Input must be a number.")
+                continue
         return x
