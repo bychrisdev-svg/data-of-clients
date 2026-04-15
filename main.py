@@ -1,28 +1,28 @@
 from add_patient import add_patient
-from list import list_added
+from list_patient import menu_list
 from prices import consultation_prices
 
-#Options Menu
 def main():
-    program = True
-    while program:
+    patients = []
+
+    while True:
         print("\n----- Menu -----")
         print("1. Add new patient")
         print("2. List of added patients")
         print("3. Consultation prices")
         print("4. Quit")
 
-        option = input("\nWhich option will you use?: ")
+        option = input("\nWhich option will you use?: ").strip()
 
         if option == "1":
-            add_patient()
+            add_patient(patients)
         elif option == "2":
-            list_added()
+            menu_list(patients)
         elif option == "3":
-            consultation_prices()
+            consultation_prices(patients)
         elif option == "4":
             print("\nGoodbye ;)")
-            program = False
+            break
         else:
             print("Error. Unknown option")
             continue

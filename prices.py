@@ -1,5 +1,3 @@
-from add_patient import patients
-
 procedure_prices = {
     "Particular": {
         "Cleaning": 60000,
@@ -28,11 +26,15 @@ base_prices = {
 }
 
 
-def consultation_prices():
+def consultation_prices(patients):
+    if not patients:
+        print("\nNo patients registered.")
+        return
+    
     for patient in patients:
-        type_of_client = patient["Type of Client"].capitalize()
-        type_of_care = patient["Type of Care"].capitalize()
-        amount = int(patient["Amount"])
+        type_of_client = patient["Type of Client"]
+        type_of_care = patient["Type of Care"]
+        amount = patient["Amount"]
 
         price = base_prices.get(type_of_client, 0)
         procedure = procedure_prices.get(type_of_client, {}).get(type_of_care, 0)
