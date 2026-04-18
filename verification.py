@@ -8,10 +8,10 @@ def verificationString(prompt, allow_client=False, allow_care=False):
     while True:
         x = input(prompt).strip().lower()
         if not x:
-            print("Input cannot be empty. Please try again.")
+            print("Input cannot be empty. Please try again")
             continue
         if not re.fullmatch(r'[a-zA-Z ]+', x):
-            print("Input cannot contain numbers or special characters.")
+            print("Input cannot contain numbers or special characters")
             continue
         if allow_client and x not in valid_client:
             print("Only allowed: Particular, EPS, Prepaid")
@@ -21,7 +21,7 @@ def verificationString(prompt, allow_client=False, allow_care=False):
             continue
         return x.title()
     
-def verificationNumber(prompt):
+def verificationNumber(prompt, allow_dni=False, patients=None):
     while True:
         x = input(prompt).strip()
         if not x:
@@ -30,6 +30,10 @@ def verificationNumber(prompt):
         if not re.fullmatch(r'[0-9]+', x):
             print("Input must be a number.")
             continue
+        if allow_dni and patients is not None:
+            if any(patient["DNI"] == int(x) for patient in patients):
+                print("DNI already exists. Please enter a another DNI")
+                continue
         return int(x)
     
 def validate_date(prompt):
@@ -50,20 +54,34 @@ def validate_number(prompt, type_consult):
         x = input(prompt).strip()
 
         if not x:
-            print("Input cannot be empty. Please try again.")
+            print("Input cannot be empty. Please try again")
             continue
         if not re.fullmatch(r'[0-9]+', x):
-            print("Input must be a number.")
+            print("Input must be a number")
             continue
 
         x = int(x)
 
         if type_consult in consult_one:
             if x != 1:
-                print("The number must be one. Because you chose the option: Cleaning, Diagnosis.")
+                print(f"The number must be one. Because you chose the option: {type_consult}")
                 continue
         if type_consult in consult_max_one:
             if not x > 0:
-                print("The number must be greater than or equal to one.")
+                print("The number must be greater than or equal to one")
                 continue
         return x
+    
+def count_extraction(patients):
+    if not patients:
+        print("\nNo patients registered")
+        return
+
+    count = 0
+
+    for patient in patients:
+        if patient["Type of Care"] == "Extraction":
+            count += 1
+
+    print("\n--- Extraction Patients ---")
+    print(f"Total patients going for extraction: {count}")
