@@ -1,4 +1,4 @@
-from prices import consultation_prices
+from patients.prices import consultation_prices
 
 def show_patient(patients):
     if not patients:

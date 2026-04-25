@@ -67,7 +67,7 @@ def consultation_prices(patients):
     return total_price
 
 def menu_prices(patients):
-    from list_patient import search_dni
+    from patients.list_patient import search_dni
 
     while True:
         print("\n---- Menu Prices ----")

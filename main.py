@@ -1,7 +1,7 @@
-from add_patient import add_patient
-from list_patient import menu_list
-from prices import menu_prices
-from verification import count_extraction
+from patients.add_patient import add_patient
+from patients.list_patient import menu_list
+from patients.prices import menu_prices
+from verifications.verification import count_extraction
 
 def main():
     patients = []

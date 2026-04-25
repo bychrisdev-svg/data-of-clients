@@ -1,4 +1,4 @@
-from verification import verificationNumber, verificationString, validate_date, validate_number
+from verifications.verification import verificationNumber, verificationString, validate_date, validate_number
 
 def collect_patient(patients):
     dni = verificationNumber("\nEnter the patient's DNI: ", allow_dni=True, patients=patients)
