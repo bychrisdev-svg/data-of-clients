@@ -85,3 +85,23 @@ def count_extraction(patients):
 
     print("\n--- Extraction Patients ---")
     print(f"Total patients going for extraction: {count}")
+
+def separate_appointments(patients):
+    urgent_extraction = []
+    normal_extraction = []
+    others = []
+
+    for patient in patients:
+        if patient["Type of Care"] == "Extraction":
+            if patient["Priority of Attention"] == "Urgent":
+                urgent_extraction.append(patient)
+            else:
+                normal_extraction.append(patient)
+        else:
+            others.append(patient)
+    
+    urgent_extraction.sort(key=lambda patient: datetime.strptime(patient["Appointment Date"], "%Y-%m-%d"))
+    normal_extraction.sort(key=lambda patient: datetime.strptime(patient["Appointment Date"], "%Y-%m-%d"))
+    others.sort(key=lambda patient: datetime.strptime(patient["Appointment Date"], "%Y-%m-%d"))
+
+    return urgent_extraction, normal_extraction, others
